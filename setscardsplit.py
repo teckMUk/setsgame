@@ -10,8 +10,6 @@ mylist = []
 variable = 0
 
 for filename in dictin:
-    file_path = r"C:\Users\mukeet\Documents\setsgame\ "
-    file_path += filename
     filedetails = filename.split("_")
     if len(filedetails) != 1:
         variable += 1
@@ -23,7 +21,7 @@ for filename in dictin:
             "color": color,
             "shape": shape,
             "fill_type": fill_type,
-            "image_file_path": file_path,
+            "file_name": filename,
         }
         mylist.append(mycards_details)
 x = mycol.insert_many(mylist)
