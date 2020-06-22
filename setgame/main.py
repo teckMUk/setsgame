@@ -1,6 +1,6 @@
 import argparse
 
-FUNCTION_MAP = {"setsgame":set_game , "drawcards": drawcards}
+FUNCTION_MAP = {"setsgame":set_finder , "drawcards": draw_12_card}
 
 
 def set_prase() -> ArgumentParser:
@@ -22,12 +22,10 @@ def draw_12_card():
         print(find_my_card(x))
 
 def set_finder(id):
-    id_1 = id[0]
-    id_2 = id[1]
-    id_3 = id[2]
-    card_1 = find_my_card(int(id_1))
-    card_2 = find_my_card(int(id_2))
-    card_3 = find_my_card(int(id_3))
+    
+    card_1 = find_my_card(id[0])
+    card_2 = find_my_card(id[1])
+    card_3 = find_my_card(id[2])
     set_or_not = True
     if card_1['color'] == card_2['color'] and card_1['color'] != card_3['color']:
         set_or_not = False
@@ -52,7 +50,7 @@ def set_finder(id):
 
 
 
-def main:
+def main():
      parser = set_prase()
      args: Namespace = parser.parse_args()
      call_func = FUNCTION_MAP[func]
