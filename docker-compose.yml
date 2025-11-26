@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: setgame-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=setsgame
+    networks:
+      - setgame-network
+
+  app:
+    build: .
+    container_name: setgame-app
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+    volumes:
+      - .:/app
+    networks:
+      - setgame-network
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  mongodb_data:
+
+networks:
+  setgame-network:
+    driver: bridge
